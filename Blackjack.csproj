@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{221A3657-9519-4645-86A9-D72FA2A2B009}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Blackjack</RootNamespace>
+    <AssemblyName>Blackjack</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\Betting.cs" />
+    <Compile Include="Classes\Card.cs" />
+    <Compile Include="Classes\Deck.cs" />
+    <Compile Include="Classes\Saving.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TransparencyPanel.cs">
+      <SubType>Component</SubType>
+      <Generator>TransparencyPanel</Generator>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\background.jpg" />
+    <EmbeddedResource Include="Images\Cards\10C.png" />
+    <EmbeddedResource Include="Images\Cards\10D.png" />
+    <EmbeddedResource Include="Images\Cards\10H.png" />
+    <EmbeddedResource Include="Images\Cards\10S.png" />
+    <EmbeddedResource Include="Images\Cards\2C.png" />
+    <EmbeddedResource Include="Images\Cards\2D.png" />
+    <EmbeddedResource Include="Images\Cards\2H.png" />
+    <EmbeddedResource Include="Images\Cards\2S.png" />
+    <EmbeddedResource Include="Images\Cards\3C.png" />
+    <EmbeddedResource Include="Images\Cards\3D.png" />
+    <EmbeddedResource Include="Images\Cards\3H.png" />
+    <EmbeddedResource Include="Images\Cards\3S.png" />
+    <EmbeddedResource Include="Images\Cards\4C.png" />
+    <EmbeddedResource Include="Images\Cards\4D.png" />
+    <EmbeddedResource Include="Images\Cards\4H.png" />
+    <EmbeddedResource Include="Images\Cards\4S.png" />
+    <EmbeddedResource Include="Images\Cards\5C.png" />
+    <EmbeddedResource Include="Images\Cards\5D.png" />
+    <EmbeddedResource Include="Images\Cards\5H.png" />
+    <EmbeddedResource Include="Images\Cards\5S.png" />
+    <EmbeddedResource Include="Images\Cards\6C.png" />
+    <EmbeddedResource Include="Images\Cards\6D.png" />
+    <EmbeddedResource Include="Images\Cards\6H.png" />
+    <EmbeddedResource Include="Images\Cards\6S.png" />
+    <EmbeddedResource Include="Images\Cards\7C.png" />
+    <EmbeddedResource Include="Images\Cards\7D.png" />
+    <EmbeddedResource Include="Images\Cards\7H.png" />
+    <EmbeddedResource Include="Images\Cards\7S.png" />
+    <EmbeddedResource Include="Images\Cards\8C.png" />
+    <EmbeddedResource Include="Images\Cards\8D.png" />
+    <EmbeddedResource Include="Images\Cards\8H.png" />
+    <EmbeddedResource Include="Images\Cards\8S.png" />
+    <EmbeddedResource Include="Images\Cards\9C.png" />
+    <EmbeddedResource Include="Images\Cards\9D.png" />
+    <EmbeddedResource Include="Images\Cards\9H.png" />
+    <EmbeddedResource Include="Images\Cards\9S.png" />
+    <EmbeddedResource Include="Images\Cards\AC.png" />
+    <EmbeddedResource Include="Images\Cards\AD.png" />
+    <EmbeddedResource Include="Images\Cards\AH.png" />
+    <EmbeddedResource Include="Images\Cards\AS.png" />
+    <EmbeddedResource Include="Images\Cards\back.jpg" />
+    <EmbeddedResource Include="Images\Cards\JC.png" />
+    <EmbeddedResource Include="Images\Cards\JD.png" />
+    <EmbeddedResource Include="Images\Cards\JH.png" />
+    <EmbeddedResource Include="Images\Cards\JS.png" />
+    <EmbeddedResource Include="Images\Cards\KC.png" />
+    <EmbeddedResource Include="Images\Cards\KD.png" />
+    <EmbeddedResource Include="Images\Cards\KH.png" />
+    <EmbeddedResource Include="Images\Cards\KS.png" />
+    <EmbeddedResource Include="Images\Cards\QC.png" />
+    <EmbeddedResource Include="Images\Cards\QD.png" />
+    <EmbeddedResource Include="Images\Cards\QH.png" />
+    <EmbeddedResource Include="Images\Cards\QS.png" />
+    <EmbeddedResource Include="Images\icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\transparency.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
