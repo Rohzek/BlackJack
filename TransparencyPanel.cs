@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace Blackjack
 {
-    public class TransparencyPanel : Panel
+    public class TransparencyPanel : FlowLayoutPanel
     {
         private const int WS_EX_TRANSPARENT = 0x20;
 
@@ -36,7 +36,7 @@ namespace Blackjack
             get
             {
                 CreateParams cp = base.CreateParams;
-                cp.ExStyle = cp.ExStyle | WS_EX_TRANSPARENT;
+                cp.ExStyle = cp.ExStyle |= WS_EX_TRANSPARENT;
                 return cp;
             }
         }
@@ -49,6 +49,6 @@ namespace Blackjack
             }
 
             base.OnPaint(e);
-        }
+        }   
     }
 }

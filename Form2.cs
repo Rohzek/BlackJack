@@ -13,7 +13,7 @@ namespace Blackjack
     public partial class Split : Form
     {
         Main main;
-        IList<Card> playerHand = Deck.getPlayerSplitHand();
+        IList<Card> playerHand = Deck.GetPlayerSplitHand();
         bool standing = false;
 
         public Split()

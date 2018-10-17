@@ -6,8 +6,8 @@ namespace Blackjack.Classes
 {
     /**
      * A generic playing card, capable of holding any value,
-     * has seperate image for front, and back. Has tooltip
-     * if face up
+     * has seperate image for front, and back. 
+     * Has tooltip displaying value, when face up.
      */
     public class Card
     {
@@ -60,6 +60,12 @@ namespace Blackjack.Classes
             backBox.Width = width;
             backBox.Height = height;
             backBox.Image = this.Back;
+            new ToolTip().SetToolTip(backBox, "Playing Card");
+        }
+
+        public override string ToString()
+        {
+            return Display;
         }
 
         /*

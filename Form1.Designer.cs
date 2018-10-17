@@ -49,8 +49,11 @@
             this.dealerValue = new System.Windows.Forms.TextBox();
             this.insuranceButton = new System.Windows.Forms.Button();
             this.borrowMoney = new System.Windows.Forms.Button();
+            this.deckCounter = new System.Windows.Forms.NumericUpDown();
+            this.deckCountCheck = new System.Windows.Forms.CheckBox();
             this.playerHand = new Blackjack.TransparencyPanel();
             this.dealerHand = new Blackjack.TransparencyPanel();
+            ((System.ComponentModel.ISupportInitialize)(this.deckCounter)).BeginInit();
             this.SuspendLayout();
             // 
             // gameStartButton
@@ -263,10 +266,44 @@
             this.borrowMoney.UseVisualStyleBackColor = true;
             this.borrowMoney.Click += new System.EventHandler(this.borrowMoney_Click);
             // 
+            // deckCounter
+            // 
+            this.deckCounter.Location = new System.Drawing.Point(136, 141);
+            this.deckCounter.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.deckCounter.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.deckCounter.Name = "deckCounter";
+            this.deckCounter.Size = new System.Drawing.Size(38, 20);
+            this.deckCounter.TabIndex = 32;
+            this.deckCounter.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // deckCountCheck
+            // 
+            this.deckCountCheck.AutoSize = true;
+            this.deckCountCheck.Location = new System.Drawing.Point(12, 142);
+            this.deckCountCheck.Name = "deckCountCheck";
+            this.deckCountCheck.Size = new System.Drawing.Size(118, 17);
+            this.deckCountCheck.TabIndex = 33;
+            this.deckCountCheck.Text = "Use Multiple Decks";
+            this.deckCountCheck.UseVisualStyleBackColor = true;
+            this.deckCountCheck.CheckedChanged += new System.EventHandler(this.deckCountCheck_CheckedChanged);
+            // 
             // playerHand
             // 
             this.playerHand.Location = new System.Drawing.Point(444, 339);
             this.playerHand.Name = "playerHand";
+            this.playerHand.Opacity = 0;
             this.playerHand.Size = new System.Drawing.Size(377, 172);
             this.playerHand.TabIndex = 29;
             // 
@@ -274,6 +311,7 @@
             // 
             this.dealerHand.Location = new System.Drawing.Point(444, 144);
             this.dealerHand.Name = "dealerHand";
+            this.dealerHand.Opacity = 0;
             this.dealerHand.Size = new System.Drawing.Size(377, 172);
             this.dealerHand.TabIndex = 28;
             // 
@@ -283,6 +321,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Blackjack.Properties.Resources.background;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.deckCountCheck);
+            this.Controls.Add(this.deckCounter);
             this.Controls.Add(this.playerHand);
             this.Controls.Add(this.dealerHand);
             this.Controls.Add(this.borrowMoney);
@@ -310,6 +350,7 @@
             this.Name = "Main";
             this.Text = "Blackjack";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.deckCounter)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -338,6 +379,8 @@
         private System.Windows.Forms.Button borrowMoney;
         private TransparencyPanel dealerHand;
         private TransparencyPanel playerHand;
+        private System.Windows.Forms.NumericUpDown deckCounter;
+        private System.Windows.Forms.CheckBox deckCountCheck;
     }
 }
 

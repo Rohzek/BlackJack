@@ -18,63 +18,6 @@ namespace Blackjack.Classes
     {
         static readonly Random random = new Random(); // Used for shuffling
 
-        // Our deck of 52 playing cards
-        static IList<Card> deck = new List<Card>
-        {
-            new Card("AC", "Ace", "Clubs", new int[] {1, 11}),
-            new Card("AD", "Ace", "Diamonds", new int[] {1, 11}),
-            new Card("AH", "Ace", "Hearts", new int[] {1, 11}),
-            new Card("AS", "Ace", "Spades", new int[] {1, 11}),
-            new Card("2C", "Two", "Clubs", new int[] {2}),
-            new Card("2D", "Two", "Diamonds", new int[] {2}),
-            new Card("2H", "Two", "Hearts", new int[] {2}),
-            new Card("2S", "Two", "Spades", new int[] {2}),
-            new Card("3C", "Three", "Clubs", new int[] {3}),
-            new Card("3D", "Three", "Diamonds", new int[] {3}),
-            new Card("3H", "Three", "Hearts", new int[] {3}),
-            new Card("3S", "Three", "Spades", new int[] {3}),
-            new Card("4C", "Four", "Clubs", new int[] {4}),
-            new Card("4D", "Four", "Diamonds", new int[] {4}),
-            new Card("4H", "Four", "Hearts", new int[] {4}),
-            new Card("4S", "Four", "Spades", new int[] {4}),
-            new Card("5C", "Five", "Clubs", new int[] {5}),
-            new Card("5D", "Five", "Diamonds", new int[] {5}),
-            new Card("5H", "Five", "Hearts", new int[] {5}),
-            new Card("5S", "Five", "Spades", new int[] {5}),
-            new Card("6C", "Six", "Clubs", new int[] {6}),
-            new Card("6D", "Six", "Diamonds", new int[] {6}),
-            new Card("6H", "Six", "Hearts", new int[] {6}),
-            new Card("6S", "Six", "Spades", new int[] {6}),
-            new Card("7C", "Seven", "Clubs", new int[] {7}),
-            new Card("7D", "Seven", "Diamonds", new int[] {7}),
-            new Card("7H", "Seven", "Hearts", new int[] {7}),
-            new Card("7S", "Seven", "Spades", new int[] {7}),
-            new Card("8C", "Eight", "Clubs", new int[] {8}),
-            new Card("8D", "Eight", "Diamonds", new int[] {8}),
-            new Card("8H", "Eight", "Hearts", new int[] {8}),
-            new Card("8S", "Eight", "Spades", new int[] {8}),
-            new Card("9C", "Nine", "Clubs", new int[] {9}),
-            new Card("9D", "Nine", "Diamonds", new int[] {9}),
-            new Card("9H", "Nine", "Hearts", new int[] {9}),
-            new Card("9S", "Nine", "Spades", new int[] {9}),
-            new Card("10C", "Ten", "Clubs", new int[] {10}),
-            new Card("10D", "Ten", "Diamonds", new int[] {10}),
-            new Card("10H", "Ten", "Hearts", new int[] {10}),
-            new Card("10S", "Ten", "Spades", new int[] {10}),
-            new Card("JC", "Jack", "Clubs", new int[] {10}),
-            new Card("JD", "Jack", "Diamonds", new int[] {10}),
-            new Card("JH", "Jack", "Hearts", new int[] {10}),
-            new Card("JS", "Jack", "Spades", new int[] {10}),
-            new Card("QC", "Queen", "Clubs", new int[] {10}),
-            new Card("QD", "Queen", "Diamonds", new int[] {10}),
-            new Card("QH", "Queen", "Hearts", new int[] {10}),
-            new Card("QS", "Queen", "Spades", new int[] {10}),
-            new Card("KC", "King", "Clubs", new int[] {10}),
-            new Card("KD", "King", "Diamonds", new int[] {10}),
-            new Card("KH", "King", "Hearts", new int[] {10}),
-            new Card("KS", "King", "Spades", new int[] {10}),
-        };
-
         /*
          * The various collections used throughout playing the game
          */
@@ -84,30 +27,152 @@ namespace Blackjack.Classes
 
         static IList<Card> discard = new List<Card>();
 
+        static IList<Card> deck = BuildDeck();
+
+        public static IList<Card> BuildDeck()
+        {
+            string[] suits = { "Clubs", "Diamonds", "Hearts", "Spades"};
+            string[] cards = { "Ace", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King" };
+            IList<Card> deck = new List<Card>();
+
+            foreach (string suit in suits)
+            {
+                foreach (string card in cards)
+                {
+                    deck.Add(new Card(GetImageName(suit, card), card, suit, GetValues(card)));
+                }
+            }
+
+            return deck;
+        }
+
+        static string GetImageName(string suit, string card)
+        {
+            string c = "c", s = suit[0] + "";
+
+            switch (card)
+            {
+                case "Two":
+                    c = "2";
+                    break;
+                case "Three":
+                    c = "3";
+                    break;
+                case "Four":
+                    c = "4";
+                    break;
+                case "Five":
+                    c = "5";
+                    break;
+                case "Six":
+                    c = "6";
+                    break;
+                case "Seven":
+                    c = "7";
+                    break;
+                case "Eight":
+                    c = "8";
+                    break;
+                case "Nine":
+                    c = "9";
+                    break;
+                case "Ten":
+                    c = "10";
+                    break;
+                default:
+                    c = card[0] + "";
+                    break;
+            }
+
+            return "" + c + s;
+        }
+
+        static int[] GetValues(string name)
+        {
+            int[] value = new int[] { };
+
+            switch (name)
+            {
+                case "Ace":
+                    value = new int[] { 1, 11 };
+                    break;
+                case "Two":
+                    value = new int[] { 2 };
+                    break;
+                case "Three":
+                    value = new int[] { 3 };
+                    break;
+                case "Four":
+                    value = new int[] { 4 };
+                    break;
+                case "Five":
+                    value = new int[] { 5 };
+                    break;
+                case "Six":
+                    value = new int[] { 6 };
+                    break;
+                case "Seven":
+                    value = new int[] { 7 };
+                    break;
+                case "Eight":
+                    value = new int[] { 8 };
+                    break;
+                case "Nine":
+                    value = new int[] { 9 };
+                    break;
+                default:
+                    value = new int[] { 10 };
+                    break;
+            }
+
+            return value;
+        }
+
         /*
          * Getters for the above collections
          */
-        public static IList<Card> getDeck()
+        public static IList<Card> GetDeck()
         {
             return deck;
         }
 
-        public static IList<Card> getDealerHand()
+        /**
+         * Returns one large deck comprised of however many small decks you choose
+         * 
+         * Count: The number of decks to put together
+         */
+        public static IList<Card> GetDecks(int count)
+        {
+            IList<Card> decks = new List<Card>();
+
+            for (int i = 0; i < count; i++)
+            {
+                var deck = BuildDeck();
+                foreach (Card card in deck)
+                {
+                    decks.Add(card);
+                }
+            }
+
+            return decks;
+        }
+
+        public static IList<Card> GetDealerHand()
         {
             return dealer;
         }
 
-        public static IList<Card> getPlayerHand()
+        public static IList<Card> GetPlayerHand()
         {
             return player;
         }
 
-        public static IList<Card> getPlayerSplitHand()
+        public static IList<Card> GetPlayerSplitHand()
         {
             return playerSplit;
         }
 
-        public static IList<Card> getDiscardPile()
+        public static IList<Card> GetDiscardPile()
         {
             return discard;
         }

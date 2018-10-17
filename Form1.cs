@@ -4,6 +4,7 @@ using Blackjack.Classes;
 
 using System.Diagnostics;
 using System.Threading;
+using System;
 
 namespace Blackjack
 {
@@ -12,13 +13,13 @@ namespace Blackjack
         Split splitWindow;
 
         IList<Card> deck;
-        IList<Card> dealersHand = Deck.getDealerHand();
-        IList<Card> playersHand = Deck.getPlayerHand();
-        IList<Card> playersSplitHand = Deck.getPlayerSplitHand();
+        IList<Card> dealersHand = Deck.GetDealerHand();
+        IList<Card> playersHand = Deck.GetPlayerHand();
+        IList<Card> playersSplitHand = Deck.GetPlayerSplitHand();
 
         Button[] playerControls;
 
-        bool playerBlackjack, dealerBlackjack, gameStarted = false, doubleDown = false, splitPlay = false, standing = false;
+        bool playerBlackjack, dealerBlackjack, gameStarted = false, doubleDown = false, splitPlay = false, standing = false, multiDeck = false;
 
         string playerWin = "PLAYER WINS", dealerWin = "DEALER WINS", push = "PUSH", surrender = "PLAYER SURRENDERS", progress = "GAME IN PROGRESS", needBet = "NO BET SUBMITTED", waiting = "WAITING TO START", noMoney = "NOT ENOUGH MONEY TO BET";
 
@@ -56,13 +57,12 @@ namespace Blackjack
             {
                 betting = new Betting(2000, 10, 5); // Player starts with $2000
             }
-            
+
             winnerAnnounce.Text = needBet;
             betting.Bet = 10; // Lowest bet allowed is $10
             refreshBets();
 
-            deck = Deck.getDeck();
-            Deck.Shuffle(deck);
+            multiDeck = deckCountCheck.Checked;
 
             playerControls = new Button[] { buttonHit, buttonDouble, buttonSurrender, buttonStand};
             DisablePlayerControls();
@@ -72,6 +72,8 @@ namespace Blackjack
             insuranceButton.Enabled = false;
             buttonSplit.Enabled = false;
             borrowMoney.Enabled = false;
+            deckCountCheck.Enabled = true;
+            deckCounter.Enabled = true;
         }
 
         /**
@@ -80,6 +82,20 @@ namespace Blackjack
          */
         void StartGame()
         {
+            if (multiDeck)
+            {
+                deck = Deck.GetDecks(Convert.ToInt32(deckCounter.Value));
+            }
+            else
+            {
+                deck = Deck.GetDeck();
+            }
+
+            Deck.Shuffle(deck);
+
+            deckCountCheck.Enabled = false;
+            deckCounter.Enabled = false;
+
             gameStarted = true;
             insuranceButton.Enabled = false;
             winnerAnnounce.Text = progress;
@@ -169,9 +185,9 @@ namespace Blackjack
          */
         public void DealerRound()
         {
-            int playerScore = cardToPlay(Deck.Values(Deck.getPlayerHand())),
-                splitScore = cardToPlay(Deck.Values(Deck.getPlayerSplitHand())),
-                dealerScore = cardToPlay(Deck.Values(Deck.getDealerHand()));
+            int playerScore = cardToPlay(Deck.Values(Deck.GetPlayerHand())),
+                splitScore = cardToPlay(Deck.Values(Deck.GetPlayerSplitHand())),
+                dealerScore = cardToPlay(Deck.Values(Deck.GetDealerHand()));
 
             if (playerBlackjack) { }
             // If the player busts, don't draw
@@ -187,7 +203,7 @@ namespace Blackjack
                 while (dealerPlays)
                 {
                     dealersHand.Add(Deck.Draw(deck));
-                    dealerScore = cardToPlay(Deck.Values(Deck.getDealerHand()));
+                    dealerScore = cardToPlay(Deck.Values(Deck.GetDealerHand()));
 
                     // If dealer goes over 17, stop playing
                     if (dealerScore >= 17)
@@ -324,8 +340,8 @@ namespace Blackjack
          */
         void CheckForBlackjack()
         {
-            playerBlackjack = Deck.Blackjack(Deck.getPlayerHand());
-            dealerBlackjack = Deck.Blackjack(Deck.getDealerHand());
+            playerBlackjack = Deck.Blackjack(Deck.GetPlayerHand());
+            dealerBlackjack = Deck.Blackjack(Deck.GetDealerHand());
 
             foreach (Card card in dealersHand)
             {
@@ -338,7 +354,7 @@ namespace Blackjack
                 }
             }
 
-            int playerScore = cardToPlay(Deck.Values(Deck.getPlayerHand()));
+            int playerScore = cardToPlay(Deck.Values(Deck.GetPlayerHand()));
 
             if (playerBlackjack)
             {
@@ -473,6 +489,13 @@ namespace Blackjack
             buttonSurrender.Enabled = false;
             DrawCard(playersHand, buttonHit, buttonDouble);
             UpdateHands();
+
+            // Game should be over if this hit made player bust
+            int playerScore = cardToPlay(Deck.Values(playersHand));
+            if (playerScore >= 21)
+            {
+                DealerRound();
+            }
         }
 
         private void buttonDouble_Click(object sender, System.EventArgs e)
@@ -547,6 +570,11 @@ namespace Blackjack
             insuranceButton.Enabled = false;
             changeCurrency(betting.Bet / 2, false);
             changeBet(betting.Bet / 2, true);
+        }
+
+        private void deckCountCheck_CheckedChanged(object sender, System.EventArgs e)
+        {
+            multiDeck = deckCountCheck.Checked;
         }
 
         private void betConfirmButton_Click(object sender, System.EventArgs e)

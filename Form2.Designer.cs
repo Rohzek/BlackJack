@@ -105,8 +105,10 @@
             // 
             // playerHandSplit
             // 
+            this.playerHandSplit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.playerHandSplit.Location = new System.Drawing.Point(152, 38);
             this.playerHandSplit.Name = "playerHandSplit";
+            this.playerHandSplit.Opacity = 0;
             this.playerHandSplit.Size = new System.Drawing.Size(377, 172);
             this.playerHandSplit.TabIndex = 22;
             // 
