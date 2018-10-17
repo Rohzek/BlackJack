@@ -39,7 +39,6 @@
             this.playerMoneyLabel = new System.Windows.Forms.Label();
             this.playerMoneyDisplay = new System.Windows.Forms.TextBox();
             this.buttonSplit = new System.Windows.Forms.Button();
-            this.playerHand = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonDouble = new System.Windows.Forms.Button();
             this.buttonStand = new System.Windows.Forms.Button();
             this.playerLabel = new System.Windows.Forms.Label();
@@ -48,9 +47,10 @@
             this.playerValue = new System.Windows.Forms.TextBox();
             this.dealerLabel = new System.Windows.Forms.Label();
             this.dealerValue = new System.Windows.Forms.TextBox();
-            this.dealerHand = new System.Windows.Forms.FlowLayoutPanel();
             this.insuranceButton = new System.Windows.Forms.Button();
             this.borrowMoney = new System.Windows.Forms.Button();
+            this.playerHand = new Blackjack.TransparencyPanel();
+            this.dealerHand = new Blackjack.TransparencyPanel();
             this.SuspendLayout();
             // 
             // gameStartButton
@@ -159,20 +159,6 @@
             this.buttonSplit.UseVisualStyleBackColor = true;
             this.buttonSplit.Click += new System.EventHandler(this.buttonSplit_Click);
             // 
-            // playerHand
-            // 
-            this.playerHand.AutoScroll = true;
-            this.playerHand.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.playerHand.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.playerHand.BackgroundImage = global::Blackjack.Properties.Resources.transparency;
-            this.playerHand.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.playerHand.Location = new System.Drawing.Point(444, 322);
-            this.playerHand.Name = "playerHand";
-            this.playerHand.Size = new System.Drawing.Size(377, 172);
-            this.playerHand.TabIndex = 4;
-            this.playerHand.WrapContents = false;
-            this.playerHand.Paint += new System.Windows.Forms.PaintEventHandler(this.playerHand_Paint);
-            // 
             // buttonDouble
             // 
             this.buttonDouble.Location = new System.Drawing.Point(529, 517);
@@ -255,19 +241,6 @@
             this.dealerValue.TabStop = false;
             this.dealerValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // dealerHand
-            // 
-            this.dealerHand.AutoScroll = true;
-            this.dealerHand.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.dealerHand.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.dealerHand.BackgroundImage = global::Blackjack.Properties.Resources.transparency;
-            this.dealerHand.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.dealerHand.Location = new System.Drawing.Point(444, 144);
-            this.dealerHand.Name = "dealerHand";
-            this.dealerHand.Size = new System.Drawing.Size(377, 172);
-            this.dealerHand.TabIndex = 10;
-            this.dealerHand.WrapContents = false;
-            // 
             // insuranceButton
             // 
             this.insuranceButton.Location = new System.Drawing.Point(853, 209);
@@ -290,20 +263,34 @@
             this.borrowMoney.UseVisualStyleBackColor = true;
             this.borrowMoney.Click += new System.EventHandler(this.borrowMoney_Click);
             // 
+            // playerHand
+            // 
+            this.playerHand.Location = new System.Drawing.Point(444, 339);
+            this.playerHand.Name = "playerHand";
+            this.playerHand.Size = new System.Drawing.Size(377, 172);
+            this.playerHand.TabIndex = 29;
+            // 
+            // dealerHand
+            // 
+            this.dealerHand.Location = new System.Drawing.Point(444, 144);
+            this.dealerHand.Name = "dealerHand";
+            this.dealerHand.Size = new System.Drawing.Size(377, 172);
+            this.dealerHand.TabIndex = 28;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Blackjack.Properties.Resources.background;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.playerHand);
+            this.Controls.Add(this.dealerHand);
             this.Controls.Add(this.borrowMoney);
             this.Controls.Add(this.buttonSplit);
             this.Controls.Add(this.insuranceButton);
-            this.Controls.Add(this.playerHand);
             this.Controls.Add(this.buttonDouble);
             this.Controls.Add(this.playerMoneyDisplay);
             this.Controls.Add(this.buttonStand);
-            this.Controls.Add(this.dealerHand);
             this.Controls.Add(this.playerLabel);
             this.Controls.Add(this.dealerValue);
             this.Controls.Add(this.buttonHit);
@@ -329,7 +316,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.FlowLayoutPanel playerHand;
         private System.Windows.Forms.Button buttonHit;
         private System.Windows.Forms.Label playerLabel;
         private System.Windows.Forms.TextBox playerValue;
@@ -348,9 +334,10 @@
         private System.Windows.Forms.Button buttonSplit;
         private System.Windows.Forms.Label dealerLabel;
         private System.Windows.Forms.TextBox dealerValue;
-        private System.Windows.Forms.FlowLayoutPanel dealerHand;
         private System.Windows.Forms.Button insuranceButton;
         private System.Windows.Forms.Button borrowMoney;
+        private TransparencyPanel dealerHand;
+        private TransparencyPanel playerHand;
     }
 }
 

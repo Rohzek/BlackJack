@@ -73,7 +73,7 @@ namespace Blackjack
             playerValue.Text = Deck.Value(playerHand);
         }
 
-        public FlowLayoutPanel getPlayerHand()
+        public TransparencyPanel getPlayerHand()
         {
             return playerHandSplit;
         }

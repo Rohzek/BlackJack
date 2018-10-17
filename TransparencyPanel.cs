@@ -14,7 +14,7 @@ namespace Blackjack
             SetStyle(ControlStyles.Opaque, true);
         }
 
-        private int opacity = 50;
+        private int opacity = 0;
         [DefaultValue(50)]
         public int Opacity
         {

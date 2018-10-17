@@ -35,7 +35,7 @@
             this.playerLabel = new System.Windows.Forms.Label();
             this.buttonStand = new System.Windows.Forms.Button();
             this.buttonDouble = new System.Windows.Forms.Button();
-            this.playerHandSplit = new System.Windows.Forms.FlowLayoutPanel();
+            this.playerHandSplit = new Blackjack.TransparencyPanel();
             this.SuspendLayout();
             // 
             // winnerAnnounce
@@ -105,16 +105,10 @@
             // 
             // playerHandSplit
             // 
-            this.playerHandSplit.AutoScroll = true;
-            this.playerHandSplit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.playerHandSplit.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.playerHandSplit.BackgroundImage = global::Blackjack.Properties.Resources.transparency;
-            this.playerHandSplit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.playerHandSplit.Location = new System.Drawing.Point(152, 38);
             this.playerHandSplit.Name = "playerHandSplit";
             this.playerHandSplit.Size = new System.Drawing.Size(377, 172);
-            this.playerHandSplit.TabIndex = 4;
-            this.playerHandSplit.WrapContents = false;
+            this.playerHandSplit.TabIndex = 22;
             // 
             // Split
             // 
@@ -144,6 +138,6 @@
         private System.Windows.Forms.Label playerLabel;
         private System.Windows.Forms.Button buttonStand;
         private System.Windows.Forms.Button buttonDouble;
-        private System.Windows.Forms.FlowLayoutPanel playerHandSplit;
+        private TransparencyPanel playerHandSplit;
     }
 }

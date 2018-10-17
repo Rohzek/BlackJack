@@ -224,12 +224,12 @@ namespace Blackjack.Classes
         /*
          * Controls for filling and clearing the panels that hold the images 
          */
-        public static void ClearDisplay(FlowLayoutPanel panel)
+        public static void ClearDisplay(TransparencyPanel panel)
         {
             panel.Controls.Clear();
         }
 
-        public static void RefreshDisplay(FlowLayoutPanel panel, IList<Card> hand)
+        public static void RefreshDisplay(TransparencyPanel panel, IList<Card> hand)
         {
             ClearDisplay(panel);
 
